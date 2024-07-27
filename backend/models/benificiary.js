@@ -17,47 +17,47 @@ const BenificarySchema = new mongoose.Schema({
   reservation: {
     type: String,
     enum: ['SC', 'ST', 'OBC', 'General'],
-    required: true
+    default: 'General'
   },
   phoneNo: {
     type: Number,
-    required: true
+    required: false
   },
   state: {
     type: String,
-    required: true,
+    required: false,
   },
   district: {
     type: String,
-    required: true
+    required: false,
   },
   family_size: {
     type: Number,
-    required: true,
+    default: 1
   },
   marital_status: {
     type: Boolean,
-    required: true
+    default: false,
   },
   disability: {
     type: Boolean,
-    required: true
+    default: false
   },
   aadhar_status: {
     type: Boolean,
-    required: true
+    default: false
   },
   pan_status: {
     type: Boolean,
-    required: true
+    default: false
   },
   voterid_status: {
     type: Boolean,
-    required: true
+    default: false
   },
   rentagreement_status: {
     type: Boolean,
-    required: true
+    default: false
   }
 });
 
