@@ -28,6 +28,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get all policy
+router.get("/all", async (req, res) => {
+  try {
+    const policies= await Policy.find({});
+    console.log(policies);
+    res.status(201).json(policies);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Failed to get policy" });
+  }
+});
+
 // Get list of benificiary eligible for a policy
 router.get("/eligible", async (req, res) => {
   try {
