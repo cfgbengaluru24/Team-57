@@ -15,4 +15,17 @@ router.put("/", async (req, res) => {
   }
 });
 
+// Get list of benificiary
+router.get("/", async (req, res) => {
+  try {
+    const query = req.body;
+    const benificiaries = await Benificiary.find(query);
+    res.json(benificiaries);
+  }     
+  catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Failed to get benificiary" });
+  }
+});
+
 module.exports = router;
