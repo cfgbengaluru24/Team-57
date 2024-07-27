@@ -70,7 +70,7 @@ router.get("/eligible", async (req, res) => {
   }
 });
 
-// Uppdate details of existing policy
+// Update details of existing policy
 router.post("/update", async (req, res) => {
   try {
     const { policyId, ...update } = req.body;
@@ -81,6 +81,19 @@ router.post("/update", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Failed to update policy" });
+  }
+});
+
+// Filter policies based on query
+router.get('/filter', async (req, res) => {
+  try {
+    const query = req.body;
+    query.enabled = true;
+    const policies = await Policy.find(query);
+    res.json(policies);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Failed to filter policies" });
   }
 });
 
