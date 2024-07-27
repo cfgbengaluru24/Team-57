@@ -22,8 +22,7 @@ router.get("/", async (req, res) => {
     const { policyId } = req.body;
     const policy = await Policy.findById(policyId);
     res.json(policy);
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Failed to get policy" });
   }
@@ -34,6 +33,11 @@ router.get("/eligible", async (req, res) => {
   try {
     const { policyId } = req.body;
     const policy = await Policy.findById(policyId);
+
+    if (!policy.enabled) {
+      const eligibleBenificiaries = [];
+      return res.json(eligibleBenificiaries);
+    }
 
     let query = {
       income: { $lte: policy.income },
@@ -51,6 +55,20 @@ router.get("/eligible", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Failed to get eligible benificiary" });
+  }
+});
+
+// Uppdate details of existing policy
+router.post("/update", async (req, res) => {
+  try {
+    const { policyId, ...update } = req.body;
+    const policy = await Policy.findByIdAndUpdate(policyId, update, {
+      new: true,
+    });
+    res.json(policy);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Failed to update policy" });
   }
 });
 

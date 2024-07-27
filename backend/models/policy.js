@@ -5,6 +5,10 @@ const PolicySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: true,
+  },
   income: {
     type: Number,
     required: true
@@ -41,6 +45,10 @@ const PolicySchema = new mongoose.Schema({
   rentagreement_status: {
     type: Boolean,
     default: false,
+  },
+  enabled: {
+    type: Boolean,
+    default: true,
   }
 });
 
