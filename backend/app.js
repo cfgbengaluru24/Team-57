@@ -28,6 +28,9 @@ app.use("/api/users", userRoutes);
 const benificiaryRoutes = require("./routes/benificiary");
 app.use("/api/benificiary", benificiaryRoutes);
 
+const policyRoutes = require("./routes/policy");
+app.use("/api/policy", policyRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
