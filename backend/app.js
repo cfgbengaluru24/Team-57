@@ -1,6 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const dotenv = require("dotenv");
+const corsOptions = {
+  origin: 'http://localhost:5500', // Allow only requests from this origin
+  methods: 'GET,POST, PUT', // Allow only these methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allow only these headers
+};
+
 
 dotenv.config();
 
@@ -8,6 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors(corsOptions));
 
 mongoose
   .connect(process.env.MONGO_URI, {
