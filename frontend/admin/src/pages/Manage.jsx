@@ -3,16 +3,8 @@ import {
   Checkbox, Typography, Chip
 } from '@mui/material';
 import { Warning, ErrorOutline, Info } from '@mui/icons-material';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-
-const data = [
-  { user: 'Jerry McDonald', date: '25 Sep 2018 07:13', reason: 'Unable to understand the policy', status: 'Resolved', statusIcon: <ErrorOutline color="error" /> },
-  { user: 'Mark Reus', date: '07 Sep 2018 21:30', reason: 'Query due to needed required documents', status: 'Open', statusIcon: <ErrorOutline color="error" /> },
-  { user: 'Carla Bustamante', date: '01 Sep 2018 12:25', reason: 'Application error process', status: 'Resolved', statusIcon: <Info color="primary" /> },
-  { user: 'Mark Reus', date: '26 Aug 2018 11:01', reason: 'Policy not understood', status: 'Open', statusIcon: <ErrorOutline color="error" /> },
-];
 
 
 const statusColors = {
@@ -22,7 +14,7 @@ const statusColors = {
 
 const QueryTable = () => {
   const [queries, setQueries] = useState([]);
-  
+
   useEffect(() => {
     // Fetch queries from the server when the component mounts
     const fetchQueries = async () => {
@@ -34,12 +26,13 @@ const QueryTable = () => {
         console.error('Error fetching queries:', error);
       }
     };
-  
+
     fetchQueries();
   }, []);
+
   return (
-    <TableContainer component={Paper}>
-      <Typography variant="h6" gutterBottom component="div" style={{ padding: '16px' }}>
+    <TableContainer component={Paper} style={{ margin: '20px' }}>
+      <Typography variant="h6" gutterBottom component="div" style={{ padding: '16px', fontSize: '1.8rem' }}>
         Queries
       </Typography>
       <Table aria-label="query table">
@@ -48,21 +41,25 @@ const QueryTable = () => {
             <TableCell padding="checkbox">
               <Checkbox />
             </TableCell>
-            <TableCell>User</TableCell>
-            <TableCell>Query reason</TableCell>
-            <TableCell>Status</TableCell>
+            <TableCell style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>User</TableCell>
+            <TableCell style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Query reason</TableCell>
+            <TableCell style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {queries.map((query) => (
-            <TableRow >
+          {queries.map((query, index) => (
+            <TableRow key={index} hover style={{ cursor: 'pointer' }}>
               <TableCell padding="checkbox">
                 <Checkbox />
               </TableCell>
-              <TableCell>{query.name}</TableCell>
-              <TableCell>{query.description}</TableCell>
+              <TableCell style={{ fontSize: '1.2rem' }}>{query.name}</TableCell>
+              <TableCell style={{ fontSize: '1.2rem' }}>{query.description}</TableCell>
               <TableCell>
-                <Chip label={query.status}  />
+                <Chip 
+                  label={query.status} 
+                  color={statusColors[query.status] || 'default'}
+                  style={{ fontSize: '1rem', padding: '0 12px' }}
+                />
               </TableCell>
             </TableRow>
           ))}
@@ -72,4 +69,4 @@ const QueryTable = () => {
   );
 };
 
-export default QueryTable;
+export default QueryTable;
