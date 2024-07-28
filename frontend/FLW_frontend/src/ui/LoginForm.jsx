@@ -40,10 +40,6 @@ export default function LoginForm({ setIsAdmin }) {
 							Login
 						</button>
 					</div>
-					<div className="flex w-[100%] justify-center space-x-5">
-						<input type="checkbox" {...register('isAdmin')} />
-						<p>I am an Admin</p>
-					</div>
 				</form>
 			</div>
 		</div>

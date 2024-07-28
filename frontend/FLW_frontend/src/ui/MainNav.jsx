@@ -62,7 +62,7 @@ export default function MainNav() {
 				</li>
 				<li>
 					<StyledNavlink to="/applicants">
-						<HiOutlineUsers /> Applicants
+						<HiOutlineUsers /> Beneficiary
 					</StyledNavlink>
 				</li>
 				<li>
