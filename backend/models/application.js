@@ -15,6 +15,10 @@ const ApplicationSchema = new mongoose.Schema({
     type: String,
     default: "Pending",
   },
+  applied_on: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Application = mongoose.model("Application", ApplicationSchema);

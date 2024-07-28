@@ -42,10 +42,10 @@ router.post("/update-status/:id", async (req, res) => {
     const { status } = req.body;
 
     // Validate the status
-    const validStatuses = ["Pending", "Approved", "Rejected"];
+    /*const validStatuses = ["Pending", "Approved", "Rejected"];
     if (!validStatuses.includes(status)) {
       return res.status(400).json({ error: "Invalid status" });
-    }
+    }*/
 
     // Find the application and update its status
     const updatedApplication = await Application.findByIdAndUpdate(
@@ -58,6 +58,7 @@ router.post("/update-status/:id", async (req, res) => {
       return res.status(404).json({ error: "Application not found" });
     }
 
+     
     res.json(updatedApplication);
   } catch (err) {
     console.error(err);

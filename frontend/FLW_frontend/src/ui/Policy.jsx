@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 
 export default function Policy() {
 	const { policyid } = useParams();
@@ -8,6 +9,7 @@ export default function Policy() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
+    const { benificiaryId } = useContext(UserContext);
 
 	useEffect(() => {
 		async function getPolicy() {
@@ -35,8 +37,13 @@ export default function Policy() {
 
 	async function handleApply() {
 		const result = await axios.put('http://localhost:8080/api/application', {
-			benificiaryId: '',
+			benificiaryId: benificiaryId,
+            policyId: policyid,
 		});
+        
+        console.log(result);
+
+        navigate('/applicants');
 	}
 
 	const DocumentCheckbox = ({ id, label, checked }) => (

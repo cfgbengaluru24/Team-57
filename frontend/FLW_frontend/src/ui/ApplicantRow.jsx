@@ -18,10 +18,10 @@ const initialApplications = [
 const statusOptions = ['Pending', 'In Progress', 'Finished', 'Rejected'];
 
 const statusColors = {
-	Pending: 'bg-yellow-100 text-yellow-800',
+	'Pending': 'bg-yellow-100 text-yellow-800',
 	'In Progress': 'bg-blue-100 text-blue-800',
-	Finished: 'bg-green-100 text-green-800',
-	Rejected: 'bg-red-100 text-red-800',
+	'Finished': 'bg-green-100 text-green-800',
+	'Rejected': 'bg-red-100 text-red-800',
 };
 
 export default function ApplicantRow({ applicant }) {
@@ -30,7 +30,20 @@ export default function ApplicantRow({ applicant }) {
 
 	const toggleDropdown = () => setIsOpen(!isOpen);
 
-	const updateStatus = (applicationId, newStatus) => {
+	const updateStatus = async (applicationId, newStatus) => {
+        try {
+            const res = await fetch(`http://localhost:8080/api/application/update-status/${applicationId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: newStatus }),
+            });
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+
 		setApplications((apps) =>
 			apps.map((app) =>
 				app.application_id === applicationId
@@ -51,7 +64,7 @@ export default function ApplicantRow({ applicant }) {
 						{applicant.village}
 					</h1>
 					<h1 className="col-span-3 font-sans text-2xl text-gray-700 text-center">
-						{applicant.no_of_applications}
+						{applicant.applications && applicant.applications.length}
 					</h1>
 				</div>
 				<button
@@ -65,16 +78,16 @@ export default function ApplicantRow({ applicant }) {
 					<h2 className="font-sans text-2xl font-semibold mb-6 text-gray-800">
 						Applications:
 					</h2>
-					{applications.map((app) => (
+					{applicant.applications && applicant.applications.map((app) => (
 						<div
-							key={app.application_id}
+							key={app._id}
 							className="mb-6 p-6 bg-gray-50 rounded-lg shadow-sm">
 							<div className="flex justify-between items-center mb-4">
 								<span className="font-semibold text-xl text-gray-700">
-									Application ID: {app.application_id}
+									Application ID: {app._id}
 								</span>
 								<span className="text-lg text-gray-600">
-									Applied on: {app.Date_of_applying}
+									Applied on: {app.applied_on}
 								</span>
 							</div>
 							<div className="flex items-center justify-between mt-6">
@@ -83,7 +96,7 @@ export default function ApplicantRow({ applicant }) {
 									<select
 										value={app.status}
 										onChange={(e) =>
-											updateStatus(app.application_id, e.target.value)
+											updateStatus(app._id, e.target.value)
 										}
 										className={`p-3 text-lg rounded-full border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
 											statusColors[app.status]

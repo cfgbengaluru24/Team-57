@@ -6,12 +6,14 @@ import AddBenificiaryForm from './ui/AddBenificiaryForm';
 import Policies from './ui/Policies';
 import Policy from './ui/Policy';
 import Homepage from './ui/Homepage';
+import UserProvider from './UserContext';
 import LandingPage from './ui/LandingPage';
 import RaiseQuery from './ui/RaiseQuery';
 import BulkPush from './ui/BulkPush';
 
 export default function App() {
 	return (
+        <UserProvider>        
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
@@ -27,5 +29,6 @@ export default function App() {
 				</Route>
 			</Routes>
 		</BrowserRouter>
+        </UserProvider>
 	);
 }

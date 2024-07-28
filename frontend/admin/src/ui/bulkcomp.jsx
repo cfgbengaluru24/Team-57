@@ -41,10 +41,10 @@ const ExcelToJson = () => {
   };
 
   return (
-    <div>
-      <h1>Bulk policy upload</h1>
-      <input type="file" accept=".xlsx, .xls" id="xlsfile"/>
-      <button onClick={handleFileUpload}>Submit</button>
+    <div className='flex flex-col'>
+      <h1 className='text-5xl'>Bulk policy upload</h1>
+      <input type="file" accept=".xlsx, .xls" id="xlsfile" className='p-10 pl-1'/>
+      <button onClick={handleFileUpload} className='border border-blue-500 rounded-xl p-1 hover:bg-blue-500 hover:text-white w-28 ml-5'>Submit</button>
     </div>
   );
 };
