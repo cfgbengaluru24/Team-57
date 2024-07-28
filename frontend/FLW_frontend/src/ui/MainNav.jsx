@@ -2,6 +2,7 @@ import {
 	HiOutlineHome,
 	HiOutlineTicket,
 	HiOutlineUsers,
+	HiOutlineDocumentPlus,
 } from 'react-icons/hi2';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -68,6 +69,11 @@ export default function MainNav() {
 				<li>
 					<StyledNavlink to="/ticket">
 						<HiOutlineTicket /> Raise Ticket
+					</StyledNavlink>
+				</li>
+				<li>
+					<StyledNavlink to="/bulkupload">
+						<HiOutlineDocumentPlus /> Bulk Upload Beneficiaries
 					</StyledNavlink>
 				</li>
 			</NavList>

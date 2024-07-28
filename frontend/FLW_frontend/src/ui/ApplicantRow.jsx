@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 // import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid';
 
@@ -95,7 +96,7 @@ export default function ApplicantRow({ applicant }) {
 									</select>
 								</div>
 								<button className="px-6 py-3 bg-blue-500 text-white text-lg rounded-full hover:bg-blue-600 transition-colors duration-200">
-									View Details
+									Update
 								</button>
 							</div>
 						</div>

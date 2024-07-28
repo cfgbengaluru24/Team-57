@@ -8,6 +8,7 @@ import Policy from './ui/Policy';
 import Homepage from './ui/Homepage';
 import LandingPage from './ui/LandingPage';
 import RaiseQuery from './ui/RaiseQuery';
+import BulkPush from './ui/BulkPush';
 
 export default function App() {
 	return (
@@ -22,6 +23,7 @@ export default function App() {
 					<Route path="/addBeneficiary" element={<AddBenificiaryForm />} />
 					<Route path="/policies/user/:userid" element={<Policies />}></Route>
 					<Route path="/policies/:policyid" element={<Policy />} />
+					<Route path="/bulkUpload" element={<BulkPush />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

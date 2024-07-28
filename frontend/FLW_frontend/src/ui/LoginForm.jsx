@@ -20,12 +20,14 @@ export default function LoginForm({ setIsAdmin }) {
 					className="flex flex-col space-y-10 w-[40%]">
 					<label className="text-4xl font-bold">Email</label>
 					<input
+						value="demo123@gmail.com"
 						type="email"
 						{...register('email')}
 						className="border-2 h-14"
 					/>
 					<label className="text-4xl font-bold">Password</label>
 					<input
+						value="passworddemo"
 						type="password"
 						{...register('password')}
 						className="border-2 h-14"

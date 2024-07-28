@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 /* eslint-disable react/prop-types */
 
@@ -44,8 +45,14 @@ export default function Policies() {
 }
 
 function PolicyRow({ policy }) {
+	const navigate = useNavigate();
+	function handleClick() {
+		navigate(`/policies/${policy._id}`);
+	}
 	return (
-		<div className="grid grid-cols-12 gap-4 items-center bg-white p-6 rounded-lg shadow-sm">
+		<div
+			onClick={handleClick}
+			className="grid grid-cols-12 gap-4 items-center bg-white p-6 rounded-lg shadow-sm cursor-pointer hover:bg-slate-100">
 			<h2 className="col-span-5 font-sans text-2xl font-semibold text-gray-800">
 				{policy.name}
 			</h2>
