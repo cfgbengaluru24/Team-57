@@ -20,11 +20,11 @@ const PolicySchema = new mongoose.Schema({
   },
   policy_type: {
     type: String,
-    required: true,
+    default: 'Education',
   },
   application_mode: {
     type: String,
-    required: true,
+    default: 'Offline',
   },
   family_size: {
     type: Number,
