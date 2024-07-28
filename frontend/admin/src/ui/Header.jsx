@@ -7,5 +7,5 @@ const StyledHeader = styled.header`
 `;
 
 export default function Header() {
-	return <StyledHeader>Header</StyledHeader>;
+	return <StyledHeader><h1>Indus Sehyog</h1></StyledHeader>;
 }

@@ -11,14 +11,14 @@ const AddPolicy = () => {
 
   const [name,setName]=useState("")
   const [desc,setDesc]=useState("")
-  const [crit,setCrit]=useState("")
+  const [income,setIncome] = useState(10000);
   const [minAge,setMinAge]=useState("")
   const [maxAge,setMaxAge]=useState("")
-  const [res,setRes]=useState("")
-  const [aadhar,setAadhar]=useState("")
-  const [pan,setPan]=useState("")
-  const [ration,setRation]=useState("")
-  const [disable,setDisable]=useState("")
+  const [reservation,setReservation]=useState("SC")
+  const [aadhar,setAadhar]=useState(false)
+  const [pan,setPan]=useState(false)
+  const [ration,setRation]=useState(false)
+  const [disable,setDisable]=useState(false)
 
 
   const handleChange = (event) => {
@@ -29,11 +29,29 @@ const AddPolicy = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(formValues);
-  };
+    try{
+      const res = await fetch('http://localhost:8080/api/policy', {
+        method: "PUT", 
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          income: income,
+          description: desc,
+          reservation: reservation,
+          aadhar_status: aadhar,
+          pan_status: pan,
+          disability: disable
+        })}
+      )
+      console.log(res);
+    }catch(error){
+      console.log(error)
+    }
+  }
 
   return (
     <div className='flex flex-col items-center justify-center'>
@@ -75,22 +93,22 @@ const AddPolicy = () => {
           />
         <label htmlFor="disability">Disability:</label>
         <select id="disable" name="disable" value={disable} onChange={(e)=>setDisable(e.target.value)} className='p-2'>
-            <option value="false">No</option>
-            <option value="true">Yes</option>
+            <option value={false}>No</option>
+            <option value={true}>Yes</option>
           </select>
           <label htmlFor="rationCard" className='p-2'>Reservation:</label>
-          <select id="reservation" name="reservation" value={res} onChange={(e)=>setRes(e.target.value)} className='p-2'>
-            <option value="false">SC</option>
-            <option value="true">ST</option>
-            <option value="true">OBC</option>
+          <select id="reservation" name="reservation" value={reservation} onChange={(e)=>setReservation(e.target.value)} className='p-2'>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="OBC">OBC</option>
           </select>
         </div>
 
         <div>
           <label htmlFor="aadhaar" className='p-2'>Aadhaar:</label>
           <select id="aadhaar" name="aadhaar" value={aadhar} onChange={(e)=>setAadhar(e.target.value)} className='p-2'>
-            <option value="false">No</option>
-            <option value="true">Yes</option>
+            <option value={false}>No</option>
+            <option value={true}>Yes</option>
           </select>
         </div>
 
@@ -98,8 +116,8 @@ const AddPolicy = () => {
         <div>
           <label htmlFor="panCard" className='p-2'>PAN Card:</label>
           <select id="panCard" name="panCard" value={pan} onChange={(e)=>setPan(e.target.value)} className='p-2'>
-            <option value="false">No</option>
-            <option value="true">Yes</option>
+            <option value={false}>No</option>
+            <option value={true}>Yes</option>
           </select>
         </div>
 
@@ -107,8 +125,8 @@ const AddPolicy = () => {
         <div>
           <label htmlFor="rationCard" className='p-2'>Ration Card:</label>
           <select id="rationCard" name="rationCard" value={ration} onChange={(e)=>setRation(e.target.value)} className='p-2'>
-            <option value="false">No</option>
-            <option value="true">Yes</option>
+          <option value={false}>No</option>
+          <option value={true}>Yes</option>
           </select>
         </div>
 

@@ -68,12 +68,16 @@ import {
 			</StyledNavlink>
 		  </li>
 		  <li>
+			<StyledNavlink to="/bulk-policy">
+			  <HiOutlineCalendarDays /> Add bulk policies
+			</StyledNavlink>
+		  </li>
+		  <li>
 			<StyledNavlink to="/manage">
 			  <HiOutlineUsers /> Manage FLW
 			</StyledNavlink>
 		  </li>
 		</NavList>
-	  </nav>
+	  </nav>
 	);
-  }
-  
+  }
