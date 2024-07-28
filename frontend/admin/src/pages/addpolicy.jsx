@@ -9,17 +9,16 @@ const AddPolicy = () => {
     rationCard: 'false',
   });
 
-  const [name,setName]=useState("")
-  const [desc,setDesc]=useState("")
-  const [income,setIncome] = useState(10000);
-  const [minAge,setMinAge]=useState("")
-  const [maxAge,setMaxAge]=useState("")
-  const [reservation,setReservation]=useState("SC")
-  const [aadhar,setAadhar]=useState(false)
-  const [pan,setPan]=useState(false)
-  const [ration,setRation]=useState(false)
-  const [disable,setDisable]=useState(false)
-
+  const [name, setName] = useState("");
+  const [desc, setDesc] = useState("");
+  const [income, setIncome] = useState(10000);
+  const [minAge, setMinAge] = useState("");
+  const [maxAge, setMaxAge] = useState("");
+  const [reservation, setReservation] = useState("SC");
+  const [aadhar, setAadhar] = useState(false);
+  const [pan, setPan] = useState(false);
+  const [ration, setRation] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,9 +30,9 @@ const AddPolicy = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
+    try {
       const res = await fetch('http://localhost:8080/api/policy', {
-        method: "PUT", 
+        method: "PUT",
         headers: {
           "Content-Type": "application/json"
         },
@@ -45,93 +44,75 @@ const AddPolicy = () => {
           aadhar_status: aadhar,
           pan_status: pan,
           disability: disable
-        })}
-      )
+        })
+      });
       console.log(res);
-    }catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   return (
-    <div className='flex flex-col items-center justify-center'>
-
-      <form onSubmit={handleSubmit}>
-      <div className='p-2'>
-          <label htmlFor="name" className='p-2'>Name of the policy:</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className='pl-2'></input>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
+        <h2 className="text-2xl font-bold mb-4">Add New Policy</h2>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name of the policy:</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
         </div>
-
-        <div className='p-2'>
-          <label htmlFor="desc" className='p-2'>Description : </label>
-            <input type="text" className='pl-2' value={desc} onChange={(e) => setDesc(e.target.value)}></input>
+        <div className="mb-4">
+          <label htmlFor="desc" className="block text-gray-700 font-bold mb-2">Description:</label>
+          <input type="text" value={desc} onChange={(e) => setDesc(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
         </div>
-
-        <div className='p-2'>
-          <label htmlFor="crit" className='p-2'>Eligibility Criteria : </label>
-          <label htmlFor="age">MinAge:</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            defaultValue={0}
-            value={minAge}
-            onChange={(e)=>setMinAge(e.target.value)}
-            min="0"
-            max="120"
-          />
-                    <label htmlFor="age">MaxAge:</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            defaultValue={0}
-            value={maxAge}
-            onChange={(e)=>setMaxAge(e.target.value)}
-            min="0"
-            max="120"
-          />
-        <label htmlFor="disability">Disability:</label>
-        <select id="disable" name="disable" value={disable} onChange={(e)=>setDisable(e.target.value)} className='p-2'>
-            <option value={false}>No</option>
-            <option value={true}>Yes</option>
-          </select>
-          <label htmlFor="rationCard" className='p-2'>Reservation:</label>
-          <select id="reservation" name="reservation" value={reservation} onChange={(e)=>setReservation(e.target.value)} className='p-2'>
+        <div className="mb-4">
+          <label htmlFor="income" className="block text-gray-700 font-bold mb-2">Income:</label>
+          <input type="number" value={income} onChange={(e) => setIncome(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="minAge" className="block text-gray-700 font-bold mb-2">Minimum Age:</label>
+          <input type="number" value={minAge} onChange={(e) => setMinAge(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="maxAge" className="block text-gray-700 font-bold mb-2">Maximum Age:</label>
+          <input type="number" value={maxAge} onChange={(e) => setMaxAge(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="reservation" className="block text-gray-700 font-bold mb-2">Reservation:</label>
+          <select id="reservation" value={reservation} onChange={(e) => setReservation(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
             <option value="SC">SC</option>
             <option value="ST">ST</option>
             <option value="OBC">OBC</option>
           </select>
         </div>
-
-        <div>
-          <label htmlFor="aadhaar" className='p-2'>Aadhaar:</label>
-          <select id="aadhaar" name="aadhaar" value={aadhar} onChange={(e)=>setAadhar(e.target.value)} className='p-2'>
+        <div className="mb-4">
+          <label htmlFor="aadhaar" className="block text-gray-700 font-bold mb-2">Aadhaar:</label>
+          <select id="aadhaar" value={aadhar} onChange={(e) => setAadhar(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
             <option value={false}>No</option>
             <option value={true}>Yes</option>
           </select>
         </div>
-
-
-        <div>
-          <label htmlFor="panCard" className='p-2'>PAN Card:</label>
-          <select id="panCard" name="panCard" value={pan} onChange={(e)=>setPan(e.target.value)} className='p-2'>
+        <div className="mb-4">
+          <label htmlFor="panCard" className="block text-gray-700 font-bold mb-2">PAN Card:</label>
+          <select id="panCard" value={pan} onChange={(e) => setPan(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
             <option value={false}>No</option>
             <option value={true}>Yes</option>
           </select>
         </div>
-
-
-        <div>
-          <label htmlFor="rationCard" className='p-2'>Ration Card:</label>
-          <select id="rationCard" name="rationCard" value={ration} onChange={(e)=>setRation(e.target.value)} className='p-2'>
-          <option value={false}>No</option>
-          <option value={true}>Yes</option>
+        <div className="mb-4">
+          <label htmlFor="rationCard" className="block text-gray-700 font-bold mb-2">Ration Card:</label>
+          <select id="rationCard" value={ration} onChange={(e) => setRation(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+            <option value={false}>No</option>
+            <option value={true}>Yes</option>
           </select>
         </div>
-
-        
-        <button type="submit" className='bg-blue-500 text-white p-2'>Submit</button>
+        <div className="mb-4">
+          <label htmlFor="disable" className="block text-gray-700 font-bold mb-2">Disability:</label>
+          <select id="disable" value={disable} onChange={(e) => setDisable(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+            <option value={false}>No</option>
+            <option value={true}>Yes</option>
+          </select>
+        </div>
+        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">Submit</button>
       </form>
     </div>
   );
