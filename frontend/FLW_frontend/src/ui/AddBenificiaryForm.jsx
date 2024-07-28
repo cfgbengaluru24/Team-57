@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router';
+import { UserContext } from '../UserContext';
 
 export default function AddBeneficiaryForm() {
 	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
+    const { setBenificiaryId } = useContext(UserContext);
 
 	function handleCancel(e) {
 		e.preventDefault();
@@ -35,6 +37,7 @@ export default function AddBeneficiaryForm() {
 			data
 		);
 
+        setBenificiaryId(result.data._id);
 		navigate(`/policies/user/${result.data._id}`);
 	}
 
