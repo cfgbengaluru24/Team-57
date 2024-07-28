@@ -1,12 +1,9 @@
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
-  Checkbox, Typography, Chip
+  Checkbox, Typography, Select, MenuItem
 } from '@mui/material';
-import { Warning, ErrorOutline, Info } from '@mui/icons-material';
-import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 
 const statusColors = {
   Resolved: 'success',
@@ -15,11 +12,6 @@ const statusColors = {
 
 const QueryTable = () => {
   const [queries, setQueries] = useState([]);
-  const [selectedValue, setSelectedValue] = useState('');
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
 
   useEffect(() => {
     // Fetch queries from the server when the component mounts
@@ -35,6 +27,22 @@ const QueryTable = () => {
 
     fetchQueries();
   }, []);
+
+  const handleStatusChange = (index, event) => {
+    const newStatus = event.target.value;
+    const updatedQueries = [...queries];
+    updatedQueries[index].status = newStatus;
+    setQueries(updatedQueries);
+
+    // Optionally, you can send the updated status to the server here
+    // axios.put(`http://localhost:8080/api/query/${updatedQueries[index].id}`, { status: newStatus })
+    //   .then(response => {
+    //     console.log('Status updated:', response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error updating status:', error);
+    //   });
+  };
 
   return (
     <TableContainer component={Paper} style={{ margin: '20px' }}>
@@ -61,29 +69,23 @@ const QueryTable = () => {
               <TableCell style={{ fontSize: '1.7rem' }}>{query.name}</TableCell>
               <TableCell style={{ fontSize: '1.7rem' }}>{query.description}</TableCell>
               <TableCell>
-                {/* <Chip 
-                  label={query.status} 
-                  color={statusColors[query.status] || 'default'}
-                  style={{ fontSize: '1rem', padding: '0 12px' }}
-                /> */}
-      <Select
-        native
-        value={selectedValue}
-        onChange={handleChange}
-        label="Select an option"
-        style={{ width: '300px'}}  // Adjust the width as needed
-        inputProps={{
-          name: 'select',
-          id: 'demo-simple-select',
-        }}
-      >
-        <option value="" disabled>
-          {query.status}
-        </option>
-        <option value={"Completed"}>Completed</option>
-        <option value={"Partially Completed"}>Partially Completed</option>
-        <option value={"Incomplete"}>Incomplete</option>
-      </Select>
+                <Select
+                  value={query.status}
+                  onChange={(event) => handleStatusChange(index, event)}
+                  label="Status"
+                  style={{ width: '300px' }}  // Adjust the width as needed
+                  inputProps={{
+                    name: 'status',
+                    id: `status-select-${index}`,
+                  }}
+                >
+                  <MenuItem value="" disabled>
+                    {query.status}
+                  </MenuItem>
+                  <MenuItem value={"Completed"}>Completed</MenuItem>
+                  <MenuItem value={"Partially Completed"}>Partially Completed</MenuItem>
+                  <MenuItem value={"Incomplete"}>Incomplete</MenuItem>
+                </Select>
               </TableCell>
             </TableRow>
           ))}
