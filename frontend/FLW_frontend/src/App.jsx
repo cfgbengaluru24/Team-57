@@ -6,9 +6,11 @@ import AddBenificiaryForm from './ui/AddBenificiaryForm';
 import Policies from './ui/Policies';
 import Policy from './ui/Policy';
 import Homepage from './ui/Homepage';
+import UserProvider from './UserContext';
 
 export default function App() {
 	return (
+        <UserProvider>        
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Login />} />
@@ -22,5 +24,6 @@ export default function App() {
 				</Route>
 			</Routes>
 		</BrowserRouter>
+        </UserProvider>
 	);
 }
