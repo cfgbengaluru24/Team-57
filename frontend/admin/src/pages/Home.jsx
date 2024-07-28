@@ -99,7 +99,8 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Policy Management</h1>
+      <h1 className='text-5xl'>Policy Management</h1>
+      <div className='p-3'>
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" value={formValues.name} onChange={handleChange} placeholder="Name" required />
         <input type="text" name="description" value={formValues.description} onChange={handleChange} placeholder="Description" required />
@@ -111,14 +112,15 @@ const Home = () => {
           <option value="General">General</option>
         </select>
         {/* Add other form fields similarly */}
-        <button type="submit">{'Update'} Policy</button>
+        <button type="submit" className='border border-blue-500 rounded-xl p-2 hover:bg-blue-500 hover:text-white'>{'Update'} Policy</button>
       </form>
+      </div>
 
       <h2 className="text-xl font-bold mb-2">Policies</h2>
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Policy ID</th>
+            {/* <th className="py-2 px-4 border-b">Policy ID</th> */}
             <th className="py-2 px-4 border-b">Policy Name</th>
             <th className="py-2 px-4 border-b">Policy Description</th>
             <th className="py-2 px-4 border-b">Actions</th>
@@ -127,7 +129,7 @@ const Home = () => {
         <tbody>
           {policies.map((policy) => (
             <tr key={policy._id}>
-              <td className="py-2 px-4 border-b text-center">{policy._id}</td>
+              {/* <td className="py-2 px-4 border-b text-center">{policy._id}</td> */}
               <td className="py-2 px-4 border-b text-center">{policy.name}</td>
               <td className="py-2 px-4 border-b text-center">{policy.description}</td>
               <td className="py-2 px-4 border-b text-center">

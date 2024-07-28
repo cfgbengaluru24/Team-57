@@ -53,7 +53,7 @@ const AddPolicy = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 w-full">
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
         <h2 className="text-2xl font-bold mb-4">Add New Policy</h2>
         <div className="mb-4">
