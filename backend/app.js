@@ -44,6 +44,9 @@ app.use('/api/application', applicationRoutes);
 const queryRoutes = require('./routes/query');
 app.use('/api/query', queryRoutes);
 
+const messageRoutes = require('./routes/message');
+app.use('/api/message', messageRoutes);
+
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
 });
