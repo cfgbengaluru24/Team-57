@@ -24,6 +24,10 @@ router.put("/", async (req, res) => {
     });
 
     const savedApplication = await newApplication.save();
+
+    benificiary.applications.push(savedApplication._id);
+    await benificiary.save();
+
     res.status(201).json(savedApplication);
   } catch (err) {
     console.error(err);

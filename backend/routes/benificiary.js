@@ -19,7 +19,7 @@ router.put("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const query = req.body;
-    const benificiaries = await Benificiary.find(query);
+    const benificiaries = await Benificiary.find(query).populate("applications");
     res.json(benificiaries);
   }     
   catch (err) {
