@@ -18,6 +18,14 @@ const PolicySchema = new mongoose.Schema({
     enum: ['SC', 'ST', 'OBC', 'General'],
     required: true
   },
+  policy_type: {
+    type: String,
+    required: true,
+  },
+  application_mode: {
+    type: String,
+    required: true,
+  },
   family_size: {
     type: Number,
     default: 0,

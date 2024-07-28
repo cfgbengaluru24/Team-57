@@ -7,17 +7,20 @@ import Policies from './ui/Policies';
 import Policy from './ui/Policy';
 import Homepage from './ui/Homepage';
 import UserProvider from './UserContext';
+import LandingPage from './ui/LandingPage';
+import RaiseQuery from './ui/RaiseQuery';
 
 export default function App() {
 	return (
         <UserProvider>        
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Login />} />
+				<Route path="/" element={<LandingPage />} />
+				<Route path="/login" element={<Login />} />
 				<Route element={<AppLayout />}>
 					<Route path="/dashboard" element={<Homepage />} />
 					<Route path="/applicants" element={<Applications />} />
-					<Route path="/ticket" element={<h1>ticket</h1>} />
+					<Route path="/ticket" element={<RaiseQuery />} />
 					<Route path="/addBeneficiary" element={<AddBenificiaryForm />} />
 					<Route path="/policies/user/:userid" element={<Policies />}></Route>
 					<Route path="/policies/:policyid" element={<Policy />} />

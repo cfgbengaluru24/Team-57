@@ -31,6 +31,10 @@ const BenificarySchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  village: {
+    type: String,
+    required: false
+  },
   family_size: {
     type: Number,
     default: 1
@@ -58,7 +62,13 @@ const BenificarySchema = new mongoose.Schema({
   rentagreement_status: {
     type: Boolean,
     default: false
-  }
+  },
+  applications: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Application'
+    }
+  ],
 });
 
 const Benificiary = mongoose.model('Benificiary', BenificarySchema);

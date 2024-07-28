@@ -1,13 +1,12 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 const corsOptions = {
-  origin: '*', // Allow only requests from this origin
-  methods: 'GET,POST, PUT', // Allow only these methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allow only these headers
+	origin: '*', // Allow only requests from this origin
+	methods: 'GET,POST, PUT', // Allow only these methods
+	allowedHeaders: ['Content-Type', 'Authorization'], // Allow only these headers
 };
-
 
 dotenv.config();
 
@@ -18,30 +17,33 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("Failed to connect to MongoDB", err);
-  });
+	.connect(process.env.MONGO_URI, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then(() => {
+		console.log('Connected to MongoDB');
+	})
+	.catch((err) => {
+		console.error('Failed to connect to MongoDB', err);
+	});
 
 // Routes
-const userRoutes = require("./routes/user");
-app.use("/api/users", userRoutes);
+const userRoutes = require('./routes/user');
+app.use('/api/users', userRoutes);
 
-const benificiaryRoutes = require("./routes/benificiary");
-app.use("/api/benificiary", benificiaryRoutes);
+const benificiaryRoutes = require('./routes/benificiary');
+app.use('/api/benificiary', benificiaryRoutes);
 
-const policyRoutes = require("./routes/policy");
-app.use("/api/policy", policyRoutes);
+const policyRoutes = require('./routes/policy');
+app.use('/api/policy', policyRoutes);
 
-const applicationRoutes = require("./routes/application");
-app.use("/api/application", applicationRoutes);
+const applicationRoutes = require('./routes/application');
+app.use('/api/application', applicationRoutes);
+
+const queryRoutes = require('./routes/query');
+app.use('/api/query', queryRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+	console.log(`Server is running on port ${PORT}`);
 });
