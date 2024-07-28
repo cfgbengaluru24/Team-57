@@ -7,5 +7,9 @@ const StyledHeader = styled.header`
 `;
 
 export default function Header() {
-	return <StyledHeader>Header</StyledHeader>;
+	return (
+		<StyledHeader>
+			<h1 className="text-6xl p-3 text-purple-500 font-bold">Indus Sehyog</h1>
+		</StyledHeader>
+	);
 }

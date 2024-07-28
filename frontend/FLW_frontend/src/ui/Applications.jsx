@@ -30,7 +30,7 @@ export default function Applications() {
 			</div>
 			<div className="flex text-center w-[100%] mt-10">
 				<div className={'w-[40%] text-left pl-4'}>Beneficiary&apos;s Name</div>
-				<div className={'w-[30%] pl-7'}>Village</div>
+				<div className={'w-[30%] pl-7'}>District</div>
 				<div className={'w-[30%]'}>No. of Applications</div>
 			</div>
 			{applicants.map((applicant) => (

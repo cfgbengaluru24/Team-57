@@ -18,14 +18,14 @@ export default function LandingPage() {
 				backgroundImage:
 					'url(https://images.pexels.com/photos/6040170/pexels-photo-6040170.jpeg)',
 			}}>
-			<div className="bg-white bg-opacity-40 p-8 rounded-lg text-center shadow-lg">
-				<h1 className="text-5xl font-bold mb-4">INDUS SEHYOG</h1>
-				<p className="text-xl mb-6">
+			<div className="bg-white bg-opacity-80 p-8 rounded-lg text-center shadow-lg">
+				<h1 className="text-7xl font-bold mb-4">INDUS SEHYOG</h1>
+				<p className="text-2xl mb-6">
 					Empowering communities through access to government schemes
 				</p>
 				<div className="space-y-4">
 					<div>
-						<p className="text-lg mb-2">Login as:</p>
+						<p className="text-xl mb-2">Login as:</p>
 					</div>
 					<div className="flex space-x-28 justify-center">
 						<button
@@ -33,11 +33,11 @@ export default function LandingPage() {
 							onClick={() => handleLogin('FLW')}>
 							User
 						</button>
-						<button
-							className="bg-white text-purple-600 border border-purple-600 py-3 px-6 rounded-full hover:bg-purple-100 transition duration-300"
-							onClick={() => handleLogin('Admin')}>
-							Admin
-						</button>
+						<a href="http://localhost:3000">
+							<button className="bg-white text-purple-600 border border-purple-600 py-3 px-6 rounded-full hover:bg-purple-100 transition duration-300">
+								Admin
+							</button>
+						</a>
 					</div>
 				</div>
 			</div>

@@ -57,10 +57,10 @@ function PolicyRow({ policy }) {
 				{policy.name}
 			</h2>
 			<p className="col-span-4 font-sans text-xl text-gray-700 text-center">
-				{policy.type}
+				{policy.policy_type}
 			</p>
 			<p className="col-span-3 font-sans text-xl text-gray-700 text-center">
-				{policy.applicationModes}
+				{'Online'}
 			</p>
 		</div>
 	);

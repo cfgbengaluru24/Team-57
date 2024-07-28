@@ -26,7 +26,7 @@ export default function RaiseQuery() {
 	return (
 		<div className="main_cont">
 			<div className="raise-query-container">
-				<h1>Raise Query</h1>
+				<h1 className={'text-7xl font-bold'}>Raise Query</h1>
 				<form onSubmit={handleSubmit}>
 					<div className="form-group">
 						<label htmlFor="heading">Problem Name:</label>
