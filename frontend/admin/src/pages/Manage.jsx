@@ -3,6 +3,7 @@ import {
   Checkbox, Typography, Chip
 } from '@mui/material';
 import { Warning, ErrorOutline, Info } from '@mui/icons-material';
+import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -14,6 +15,11 @@ const statusColors = {
 
 const QueryTable = () => {
   const [queries, setQueries] = useState([]);
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   useEffect(() => {
     // Fetch queries from the server when the component mounts
@@ -52,14 +58,32 @@ const QueryTable = () => {
               <TableCell padding="checkbox">
                 <Checkbox />
               </TableCell>
-              <TableCell style={{ fontSize: '1.2rem' }}>{query.name}</TableCell>
-              <TableCell style={{ fontSize: '1.2rem' }}>{query.description}</TableCell>
+              <TableCell style={{ fontSize: '1.7rem' }}>{query.name}</TableCell>
+              <TableCell style={{ fontSize: '1.7rem' }}>{query.description}</TableCell>
               <TableCell>
-                <Chip 
+                {/* <Chip 
                   label={query.status} 
                   color={statusColors[query.status] || 'default'}
                   style={{ fontSize: '1rem', padding: '0 12px' }}
-                />
+                /> */}
+      <Select
+        native
+        value={selectedValue}
+        onChange={handleChange}
+        label="Select an option"
+        style={{ width: '300px'}}  // Adjust the width as needed
+        inputProps={{
+          name: 'select',
+          id: 'demo-simple-select',
+        }}
+      >
+        <option value="" disabled>
+          {query.status}
+        </option>
+        <option value={"Completed"}>Completed</option>
+        <option value={"Partially Completed"}>Partially Completed</option>
+        <option value={"Incomplete"}>Incomplete</option>
+      </Select>
               </TableCell>
             </TableRow>
           ))}
