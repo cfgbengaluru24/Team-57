@@ -4,6 +4,27 @@ const Policy = require("../models/policy");
 const Benificiary = require("../models/benificiary");
 const Application = require("../models/application");
 
+const accountSid = process.env.AUTH_ID;
+const authToken = process.env.AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
+
+// Function to send SMS
+const sendSMS = async (body) => {
+    let msgOptions = {
+        from: process.env.FROM_PHONE_NUMBER,
+        to: process.env.TO_PHONE_NUMBER,
+        body,
+    };
+    try {
+        const message = await client.messages.create(msgOptions);
+        console.log(message);
+        return message;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+};
+
 // Create a new application
 router.put("/", async (req, res) => {
   try {
@@ -57,8 +78,8 @@ router.post("/update-status/:id", async (req, res) => {
     if (!updatedApplication) {
       return res.status(404).json({ error: "Application not found" });
     }
-
-     
+    
+    sendSMS(`Your application ${updatedApplication._id} has been moved to ${status}`);
     res.json(updatedApplication);
   } catch (err) {
     console.error(err);
